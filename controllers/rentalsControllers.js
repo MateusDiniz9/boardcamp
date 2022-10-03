@@ -20,10 +20,12 @@ export async function listRentals(req, res) {
     return;
   }
   const rentals = await connection.query(`SELECT 
-  rentals.*,customers.id, customers.name,games.id,games.name,games."categoryId",games."categoryName"
+  rentals.*,customers.id, customers.name,games.id,games.name,games."categoryId",categories.name
    from rentals 
-   JOIN customers ON rentals."customerId" = custumers.id 
-   JOIN games ON rentals."gameId" = games.id;`);
+   JOIN customers ON rentals."customerId" = customers.id 
+   JOIN games ON rentals."gameId" = games.id
+   JOIN categories ON games."categoryId" = categories.id;`);
+
   res.send(rentals.rows);
 }
 
