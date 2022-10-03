@@ -38,7 +38,7 @@ export async function postGames(req, res) {
     return;
   }
   await connection.query(
-    `INSERT INTO GAMES (name,image,stockTotal,categoryId,pricePerDay) VALUES (${games.name},${games.image},${games.stockTotal},${games.categoryId},${games.pricePerDay});`
+    `INSERT INTO GAMES (name,image,stockTotal,categoryId,pricePerDay) VALUES ("${games.name}","${games.image}","${games.stockTotal}","${games.categoryId}","${games.pricePerDay}");`
   );
   res.send(201);
 }

@@ -34,7 +34,7 @@ export async function postClients(req, res) {
     return;
   }
   await connection.query(
-    `INSERT INTO customers (name, phone, cpf, birthday) VALUES (${clients.name}, ${clients.phone}, ${clients.cpf}, ${clients.birthday})`
+    `INSERT INTO customers (name, phone, cpf, birthday) VALUES ("${clients.name}", "${clients.phone}", "${clients.cpf}", "${clients.birthday}")`
   );
   res.send(201);
 }
@@ -55,7 +55,7 @@ export async function updateClients(req, res) {
     return;
   }
   await connection.query(
-    `ÙPDATE customers SET name = ${clients.name}, phone = ${clients.phone}, cpf = ${clients.cpf}, birthday = ${clients.birthday} WHERE id = $1;`,
+    `ÙPDATE customers SET name = "${clients.name}", phone = ${clients.phone}, cpf = ${clients.cpf}, birthday = ${clients.birthday} WHERE id = $1;`,
     [id]
   );
   res.send(200);
